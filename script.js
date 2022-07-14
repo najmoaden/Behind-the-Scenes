@@ -33,7 +33,7 @@ function calcAge(birthYear) {
 const firstName = 'Jonas';
 calcAge(1991);
  */
-
+/* 
 //Hoisting and TDZ
 
 //Hoisting with variables
@@ -70,3 +70,37 @@ function deleteShoppingCart() {
 var x = 1;
 let y = 2;
 const z = 3;
+ */
+
+//this Keyword
+console.log(this); //displays the window object
+
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this); ///displays undefined
+};
+calcAge(1991);
+
+const calcAgeArrow = birthYear => {
+  console.log(2037 - birthYear);
+  console.log(this); //display the window object
+};
+calcAgeArrow(1991);
+
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this); //display the object that is calling the method i.e jonas
+    console.log(2037 - this.year);
+  },
+};
+jonas.calcAge();
+
+const matilda = {
+  year: 2017,
+};
+matilda.calcAge = jonas.calcAge; //borrowing the function to the matilda object
+matilda.calcAge();
+
+const f = jonas.calcAge; //undefined
+f();
