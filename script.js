@@ -105,7 +105,7 @@ matilda.calcAge();
 const f = jonas.calcAge; //undefined
 f();
  */
-
+/*
 //Regular Functions vs. Arrow Functions
 const jonas = {
   firstName: 'Jonas',
@@ -114,12 +114,12 @@ const jonas = {
     console.log(this); //display the object that is calling the method i.e jonas
     console.log(2037 - this.year);
 
-    /*  //Solution 1 for making the this keyword work
-    const self = this; //self or that
-    const isMillenial = function () {
-      console.log(self.year >= 1991 && self <= 1996);
-    };
-    isMillenial(); */
+    //  //Solution 1 for making the this keyword work
+    // const self = this; //self or that
+    // const isMillenial = function () {
+    //   console.log(self.year >= 1991 && self <= 1996);
+    // };
+    // isMillenial();
 
     //Solution 2 for making the this keyword work
     const isMillenial = () => {
@@ -143,3 +143,40 @@ var addArrow = (a, b) => {
   return a + b;
 };
 addArrow(3, 5);
+*/
+
+//Primitives vs. Objects (Primitive vs. Reference Types)
+
+//Primitive types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName, oldLastName);
+//Reference types
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+console.log('Before marriage', jessica);
+console.log('After marriage', marriedJessica);
+
+//Copying objects
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+//Shallow copy
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = 'Davis';
+console.log('Before marriage', jessica2);
+console.log('After marriage', jessicaCopy);
+
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+console.log('Before marriage', jessica2);
+console.log('After marriage', jessicaCopy);
