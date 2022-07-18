@@ -71,7 +71,7 @@ var x = 1;
 let y = 2;
 const z = 3;
  */
-
+/* 
 //this Keyword
 console.log(this); //displays the window object
 
@@ -104,3 +104,42 @@ matilda.calcAge();
 
 const f = jonas.calcAge; //undefined
 f();
+ */
+
+//Regular Functions vs. Arrow Functions
+const jonas = {
+  firstName: 'Jonas',
+  year: 1991,
+  calcAge: function () {
+    console.log(this); //display the object that is calling the method i.e jonas
+    console.log(2037 - this.year);
+
+    /*  //Solution 1 for making the this keyword work
+    const self = this; //self or that
+    const isMillenial = function () {
+      console.log(self.year >= 1991 && self <= 1996);
+    };
+    isMillenial(); */
+
+    //Solution 2 for making the this keyword work
+    const isMillenial = () => {
+      console.log(this.year >= 1991 && this <= 1996);
+    };
+    isMillenial();
+  },
+  greet: () => console.log(`Hey ${this.firstName}`), //The this keyword uses the global object
+};
+jonas.greet();
+jonas.calcAge();
+
+//Arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+addExpr(2, 5);
+var addArrow = (a, b) => {
+  console.log(arguments); //Not defined in the arrow function
+  return a + b;
+};
+addArrow(3, 5);
